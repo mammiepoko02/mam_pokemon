@@ -1,0 +1,43 @@
+
+<div>
+    <button (click)="statusList()">
+      {{ showPokemons ? 'Hide Pokemon' : 'Show Pokemon' }}
+    </button>
+</div>
+  
+<body style="background-color: rgb(126, 184, 59);">
+  <div *ngIf="showPokemons">
+    <ul>
+      <li *ngFor="let pokemon of pokeListData; let i = index">
+        <div class="pokemon-item">
+          
+            <img [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + (i + 1) + '.png'" alt="{{ pokemon.name }}" width="100" height="100">
+            <img [src] ="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/' + (i + 1) + '.png'" alt="{{ pokemon.name }}" width="100" height="100">
+  
+
+          <p>{{ pokemon.name | uppercase }}</p>
+  
+          <button (click)="statusDetail(i)">
+            {{ showDetailPokemon[i] ? 'Hide Detail' : 'Show Detail' }}
+          </button>
+
+          
+
+          <div *ngIf="showDetailPokemon[i]">
+            <p><strong>Types:</strong> {{ pokemon.types.join(', ') }}</p>
+            <p><strong> Stats:</strong></p>
+            <ul>
+              <li>HP: {{ pokemon.stats.hp }} </li>
+              <li>Attack: {{ pokemon.stats.attack }} </li>
+              <li>Defense: {{ pokemon.stats.defense }} </li>
+              <li>Special Attack: {{ pokemon.stats.specialAttack }} </li>
+              <li>Special Defense: {{ pokemon.stats.specialDefense }}</li>
+              <li>Speed: {{ pokemon.stats.speed }}</li>
+            </ul>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</body>
+
